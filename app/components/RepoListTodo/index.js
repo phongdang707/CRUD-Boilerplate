@@ -6,9 +6,6 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import ListItem from 'components/ListItem';
 
 function ReposList({ loading, error, data }) {
-  console.log('data', data);
-  console.log('error', error);
-  console.log('loading', loading);
   if (loading) {
     return <List component={LoadingIndicator} />;
   }

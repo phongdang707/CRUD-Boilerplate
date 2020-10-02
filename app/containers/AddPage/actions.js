@@ -18,10 +18,10 @@
 import {
   CHANGE_TODO,
   LOAD_REPOS,
-  LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
   LOAD_DATA,
   LOADING_DATA,
+  LOAD_DATA_APPEND,
 } from './constants';
 
 /**
@@ -63,22 +63,6 @@ export function loadData(data) {
 }
 
 /**
- * Dispatched when the repositories are loaded by the request saga
- *
- * @param  {array} repos The repository data
- * @param  {string} username The current username
- *
- * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
- */
-export function reposLoaded(dataInit, repos) {
-  return {
-    type: LOAD_REPOS_SUCCESS,
-    repos,
-    dataInit,
-  };
-}
-
-/**
  * Dispatched when loading the repositories fails
  *
  * @param  {object} error The error
@@ -89,5 +73,12 @@ export function repoLoadingError(error) {
   return {
     type: LOAD_REPOS_ERROR,
     error,
+  };
+}
+
+export function loadDataAppend(data) {
+  return {
+    type: LOAD_DATA_APPEND,
+    data,
   };
 }

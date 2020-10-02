@@ -13,10 +13,10 @@ export const CHANGE_TODO = 'boilerplate/Home/CHANGE_TODO';
 
 export const LOAD_REPOS = 'boilerplate/Home/LOAD_REPOS';
 
-export const LOAD_REPOS_SUCCESS = 'boilerplate/Home/LOAD_REPOS_SUCCESS';
-
 export const LOAD_REPOS_ERROR = 'boilerplate/Home/LOAD_REPOS_ERROR';
 
 export const LOAD_DATA = 'boilerplate/Home/LOAD_DATA';
 
 export const LOADING_DATA = 'boilerplate/Home/LOADING_DATA';
+
+export const LOAD_DATA_APPEND = 'boilerplate/Home/LOAD_DATA_APPEND';

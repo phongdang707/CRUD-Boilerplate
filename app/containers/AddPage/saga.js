@@ -5,9 +5,9 @@
 import { put, select, takeLatest } from 'redux-saga/effects';
 import { LOAD_REPOS, LOADING_DATA } from 'containers/AddPage/constants';
 import {
-  reposLoaded,
   repoLoadingError,
   loadData,
+  loadDataAppend,
 } from 'containers/AddPage/actions';
 import axios from 'axios';
 
@@ -20,21 +20,23 @@ export function* getRepos() {
   // Select username from store
   const todoList = yield select(makeSelectAddPage());
   const dataInit = yield select(makeSelectData());
-  console.log('dataInit', dataInit);
 
-  const requestURL = yield axios({
-    method: 'post',
-    url: 'https://api-nodejs-todolist.herokuapp.com/task',
-    headers: {
-      Authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjc1NGZlYzA3OTAzMTAwMTc1YWM0OTYiLCJpYXQiOjE2MDE1MjM2OTJ9.IgAxsmhMgPf_-fMjdOXUb2sOIFC_ygiHqX4fGZnOa2k',
-    },
-    data: {
-      description: todoList,
-    },
-  });
+  const data = { description: todoList, _id: Math.random() };
+  const dataNew = [...dataInit, data];
+
   try {
-    yield put(reposLoaded(dataInit, requestURL.data.data));
+    yield put(loadDataAppend(dataNew));
+    yield axios({
+      method: 'post',
+      url: 'https://api-nodejs-todolist.herokuapp.com/task',
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjc2ZTQzN2E2YTY3MzAwMTc0NzFjNmIiLCJpYXQiOjE2MDE2MjcxOTJ9.x6hiHZB6izKaoLB5RRKKeqX-J5TlqtFJMDu2NVtl5ak',
+      },
+      data: {
+        description: todoList,
+      },
+    });
   } catch (err) {
     yield put(repoLoadingError(err));
   }
@@ -46,7 +48,7 @@ export function* loadDataRespo() {
     url: 'https://api-nodejs-todolist.herokuapp.com/task',
     headers: {
       Authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjc1NGZlYzA3OTAzMTAwMTc1YWM0OTYiLCJpYXQiOjE2MDE1MjM2OTJ9.IgAxsmhMgPf_-fMjdOXUb2sOIFC_ygiHqX4fGZnOa2k',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjc2ZTQzN2E2YTY3MzAwMTc0NzFjNmIiLCJpYXQiOjE2MDE2MjcxOTJ9.x6hiHZB6izKaoLB5RRKKeqX-J5TlqtFJMDu2NVtl5ak',
     },
   });
 

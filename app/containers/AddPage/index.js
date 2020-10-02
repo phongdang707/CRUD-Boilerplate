@@ -12,9 +12,13 @@ import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import ReposListTodo from 'components/RepoListTodo';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
+import Button from '@material-ui/core/Button';
+
+import TextField from '@material-ui/core/TextField';
 
 import H1 from 'components/H1';
 import {
@@ -22,13 +26,31 @@ import {
   makeSelectLoading,
   makeSelectError,
 } from './selectors';
-import Button from './Button';
-import Input from './Input';
+// import Input from './Input';
 import Form from './Form';
 import messages from './messages';
 import { ChangeInputTodo, loadRepos, loadingData } from './actions';
 import reducer from './reducer';
 import saga from './saga';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    margin: '20px 0px',
+    float: 'right',
+  },
+  input: {
+    '& > *': {
+      width: '100%',
+    },
+  },
+}));
 
 export function AddPage({
   inputTodo,
@@ -49,10 +71,11 @@ export function AddPage({
     data,
   };
 
-  console.log('reposListProps', reposListProps);
   useEffect(() => {
     loadDataDefault();
   }, []);
+
+  const classes = useStyles();
 
   return (
     <div>
@@ -65,19 +88,25 @@ export function AddPage({
       </Helmet>
       <H1>Add Todo</H1>
 
-      <Form onSubmit={onSubmitForm}>
-        <Input
+      <Form onSubmit={onSubmitForm} className={classes.input}>
+        <TextField
+          id="standard-basic"
+          label="Add new Todo, Type here"
+          value={inputTodo}
+          onChange={onChangeInputTodo}
+          className={classes.input}
+        />
+        {/* <Input
           id="inputTodos"
           type="text"
           placeholder="Add new Todo, Type here"
           value={inputTodo}
           onChange={onChangeInputTodo}
-        />
-        <Button type="submit">
+        /> */}
+        <Button type="submit" variant="contained" className={classes.root}>
           <FormattedMessage {...messages.buttonSubmit} />
         </Button>
         <ReposListTodo {...reposListProps} />
-        {/* {item} */}
       </Form>
     </div>
   );
