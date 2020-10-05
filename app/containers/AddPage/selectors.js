@@ -30,10 +30,31 @@ const makeSelectError = () =>
     todoListReducer => todoListReducer.error,
   );
 
+const makeSelectGetTaskById = () =>
+  createSelector(
+    selectAddPage,
+    todoListReducer => todoListReducer.idSelected,
+  );
+
+const makeSelectTaskIdEdit = () =>
+  createSelector(
+    selectAddPage,
+    todoListReducer => todoListReducer.idEdit,
+  );
+
+const makeSelectTaskEdit = () =>
+  createSelector(
+    selectAddPage,
+    todoListReducer => todoListReducer.editTaskName,
+  );
+
 export {
   selectAddPage,
   makeSelectAddPage,
   makeSelectData,
   makeSelectLoading,
   makeSelectError,
+  makeSelectGetTaskById,
+  makeSelectTaskIdEdit,
+  makeSelectTaskEdit,
 };

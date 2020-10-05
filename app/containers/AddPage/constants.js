@@ -20,3 +20,11 @@ export const LOAD_DATA = 'boilerplate/Home/LOAD_DATA';
 export const LOADING_DATA = 'boilerplate/Home/LOADING_DATA';
 
 export const LOAD_DATA_APPEND = 'boilerplate/Home/LOAD_DATA_APPEND';
+
+export const DELETE_TASK_BY_ID = 'boilerplate/Home/DELETE_TASK_BY_ID';
+
+export const SELECTED_TASK_BY_ID = 'boilerplate/Home/SELECTED_TASK_BY_ID';
+
+export const CHANGE_EDIT_TASK = 'boilerplate/Home/CHANGE_EDIT_TASK';
+
+export const UPDATE_TASK = 'boilerplate/Home/UPDATE_TASK';

@@ -26,14 +26,13 @@ import {
   makeSelectLoading,
   makeSelectError,
 } from './selectors';
-// import Input from './Input';
 import Form from './Form';
 import messages from './messages';
 import { ChangeInputTodo, loadRepos, loadingData } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     border: 0,
@@ -96,13 +95,6 @@ export function AddPage({
           onChange={onChangeInputTodo}
           className={classes.input}
         />
-        {/* <Input
-          id="inputTodos"
-          type="text"
-          placeholder="Add new Todo, Type here"
-          value={inputTodo}
-          onChange={onChangeInputTodo}
-        /> */}
         <Button type="submit" variant="contained" className={classes.root}>
           <FormattedMessage {...messages.buttonSubmit} />
         </Button>

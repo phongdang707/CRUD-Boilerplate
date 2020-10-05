@@ -22,6 +22,10 @@ import {
   LOAD_DATA,
   LOADING_DATA,
   LOAD_DATA_APPEND,
+  SELECTED_TASK_BY_ID,
+  UPDATE_TASK,
+  // DELETE_TASK_BY_ID,
+  CHANGE_EDIT_TASK,
 } from './constants';
 
 /**
@@ -80,5 +84,26 @@ export function loadDataAppend(data) {
   return {
     type: LOAD_DATA_APPEND,
     data,
+  };
+}
+
+export function selectedTaskId(id) {
+  return {
+    type: SELECTED_TASK_BY_ID,
+    id,
+  };
+}
+
+export function changeEditTask(data, id) {
+  return {
+    type: CHANGE_EDIT_TASK,
+    data,
+    id,
+  };
+}
+
+export function updateTask() {
+  return {
+    type: UPDATE_TASK,
   };
 }

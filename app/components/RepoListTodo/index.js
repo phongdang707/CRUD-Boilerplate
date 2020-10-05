@@ -7,7 +7,10 @@ import ListItem from 'components/ListItem';
 
 function ReposList({ loading, error, data }) {
   if (loading) {
-    return <List component={LoadingIndicator} />;
+    // return <List component={LoadingIndicator} />;
+    return (
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+    );
   }
   if (error !== false) {
     const ErrorComponent = () => (
